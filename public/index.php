@@ -6,6 +6,7 @@ use App\Controllers\SolicitanteController;
 use App\Controllers\InventarioController;
 use App\Controllers\InformeController;
 use App\Utils\Response;
+use App\Controllers\AuthController;
 
 // ----------------------------------------------------------------------------
 // CONFIGURACIÓN CORS (Crucial para conectar Render con Vercel)
@@ -37,6 +38,11 @@ try {
         (new SolicitanteController())->listar();
     } elseif ($uri === '/api/solicitantes' && $method === 'POST') {
         (new SolicitanteController())->crear();
+    }
+
+    // Endpoint de Autenticación
+    if ($uri === '/api/auth/login' && $method === 'POST') {
+        (new AuthController())->login();
     }
 
     // Endpoints Inventario
